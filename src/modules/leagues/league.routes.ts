@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { LeagueController } from "./league.controller";
-import { authMiddleware } from "../../shared/middlewares/auth.middlewares";
+import { LeagueController } from "./league.controller.js";
+import { authMiddleware } from "../../shared/middlewares/auth.middlewares.js";
 
 const routes = Router();
 const controller = new LeagueController();

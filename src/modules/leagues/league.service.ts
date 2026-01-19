@@ -1,6 +1,6 @@
-import { AppError } from "../../shared/errors/AppError";
-import { LeagueRepository } from "./league.repository";
-import { CreateLeagueDTO } from "./league.dto";
+import { AppError } from "../../shared/errors/AppError.js";
+import { LeagueRepository } from "./league.repository.js";
+import { CreateLeagueDTO } from "./league.dto.js";
 import { randomUUID } from "crypto";
 
 export class LeagueService {

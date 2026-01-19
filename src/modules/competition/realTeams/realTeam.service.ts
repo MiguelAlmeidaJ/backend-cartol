@@ -1,5 +1,5 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { RealTeamRepository } from "./realTeam.repository";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { RealTeamRepository } from "./realTeam.repository.js";
 
 export class RealTeamService {
     private repository = new RealTeamRepository();

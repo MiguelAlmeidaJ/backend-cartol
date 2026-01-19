@@ -1,6 +1,6 @@
-import { AppError } from '../../shared/errors/AppError';
-import { calculatePoints } from '../../shared/utils/calculatePoints';
-import { ScoringRepository } from './scoring.repository';
+import { AppError } from '../../shared/errors/AppError.js';
+import { calculatePoints } from '../../shared/utils/calculatePoints.js';
+import { ScoringRepository } from './scoring.repository.js';
 
 export class ScoringService {
   constructor(

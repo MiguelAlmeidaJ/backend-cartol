@@ -1,7 +1,7 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { StatsRepository } from "./stats.repository";
-import { CreatePlayerMatchStatsDTO, UpdatePlayerMatchStatsDTO } from "./stats.dto";
-import { prisma } from "../../../config/prisma";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { StatsRepository } from "./stats.repository.js";
+import { CreatePlayerMatchStatsDTO, UpdatePlayerMatchStatsDTO } from "./stats.dto.js";
+import { prisma } from "../../../config/prisma.js";
 
 export class StatsService {
     constructor(

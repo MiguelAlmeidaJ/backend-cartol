@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { RealTeamController } from "./realTeam.controller";
+import { RealTeamController } from "./realTeam.controller.js";
 
 const router = Router();
 const controller = new RealTeamController();

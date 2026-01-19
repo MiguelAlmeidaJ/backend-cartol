@@ -1,4 +1,4 @@
-import { Position } from "../../../generated/prisma/enums";
+import { Position } from "../../../generated/prisma/enums.js";
 
 export interface CreatePlayerDTO {
     name: string;

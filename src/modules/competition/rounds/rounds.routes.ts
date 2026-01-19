@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { RoundsController } from "./rounds.controller";
+import { RoundsController } from "./rounds.controller.js";
 
 const routes = Router();
 const controller = new RoundsController();

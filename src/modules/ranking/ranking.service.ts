@@ -1,5 +1,5 @@
-import { AppError } from "../../shared/errors/AppError";
-import { RankingRepository } from "./ranking.repository";
+import { AppError } from "../../shared/errors/AppError.js";
+import { RankingRepository } from "./ranking.repository.js";
 
 export class RankingService {
   private repository = new RankingRepository();
@@ -59,7 +59,7 @@ export class RankingService {
     });
 
     return ranking.sort(
-      (a, b) => b.totalPoints - a.totalPoints
+      (a: { totalPoints: number; }, b: { totalPoints: number; }) => b.totalPoints - a.totalPoints
     );
   }
 

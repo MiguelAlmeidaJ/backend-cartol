@@ -1,5 +1,5 @@
-import { prisma } from "../../../config/prisma";
-import { CreateMatchDTO, UpdateMatchDTO } from "./matches.dto";
+import { prisma } from "../../../config/prisma.js";
+import { CreateMatchDTO, UpdateMatchDTO } from "./matches.dto.js";
 
 export class MatchesRepository {
     create(data: CreateMatchDTO) {

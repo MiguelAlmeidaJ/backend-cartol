@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RankingService } from "./ranking.service";
+import { RankingService } from "./ranking.service.js";
 
 const service = new RankingService();
 

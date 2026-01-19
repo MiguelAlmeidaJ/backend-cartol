@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { ScoringService } from './scoring.service';
-import { ScoringRepository } from './scoring.repository';
+import { ScoringService } from './scoring.service.js';
+import { ScoringRepository } from './scoring.repository.js';
 
 export class ScoringController {
   async processRound(req: Request<{ roundId: string }>, res: Response) {

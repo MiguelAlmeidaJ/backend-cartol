@@ -1,5 +1,5 @@
-import { prisma } from "../../../config/prisma";
-import { CreateRoundDTO, UpdateRoundDTO } from "./rounds.dto";
+import { prisma } from "../../../config/prisma.js";
+import { CreateRoundDTO, UpdateRoundDTO } from "./rounds.dto.js";
 
 export class RoundsRepository {
     create(data: CreateRoundDTO) {

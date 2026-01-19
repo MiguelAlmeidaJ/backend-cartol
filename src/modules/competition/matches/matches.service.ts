@@ -1,7 +1,7 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { MatchesRepository } from "./matches.repository";
-import { CreateMatchDTO, UpdateMatchDTO } from "./matches.dto";
-import { prisma } from "../../../config/prisma";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { MatchesRepository } from "./matches.repository.js";
+import { CreateMatchDTO, UpdateMatchDTO } from "./matches.dto.js";
+import { prisma } from "../../../config/prisma.js";
 
 export class MatchesService {
   constructor(

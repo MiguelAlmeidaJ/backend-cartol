@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { prisma } from '../../config/prisma';
-import { AppError } from '../../shared/errors/AppError';
-import { RegistroDTO, LoginDTO } from './auth.dto';
-import { env } from '../../config/env';
+import { prisma } from '../../config/prisma.js';
+import { AppError } from '../../shared/errors/AppError.js';
+import { RegistroDTO, LoginDTO } from './auth.dto.js';
+import { env } from '../../config/env.js';
 
 export class AuthService {
     async register(data: RegistroDTO) {

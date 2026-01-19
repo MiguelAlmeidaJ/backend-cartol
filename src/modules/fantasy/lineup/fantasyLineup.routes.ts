@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { FantasyLineupController } from "./fantasyLineup.controller";
-import { authMiddleware } from "../../../shared/middlewares/auth.middlewares";
+import { FantasyLineupController } from "./fantasyLineup.controller.js";
+import { authMiddleware } from "../../../shared/middlewares/auth.middlewares.js";
 
 const routes = Router();
 const controller = new FantasyLineupController();

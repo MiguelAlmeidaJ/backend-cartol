@@ -1,6 +1,6 @@
-import { AppError } from "../../shared/errors/AppError";
-import { UserRepository } from "./user.repository";
-import { UpdateUserDTO } from "./user.dto";
+import { AppError } from "../../shared/errors/AppError.js";
+import { UserRepository } from "./user.repository.js";
+import { UpdateUserDTO } from "./user.dto.js";
 
 export class UserService {
     private userRepository = new UserRepository();

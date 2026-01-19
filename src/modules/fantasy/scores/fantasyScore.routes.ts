@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { FantasyScoreController } from "./fantasyScore.controller";
-import { authMiddleware } from "../../../shared/middlewares/auth.middlewares";
+import { FantasyScoreController } from "./fantasyScore.controller.js";
+import { authMiddleware } from "../../../shared/middlewares/auth.middlewares.js";
 
 const routes = Router();
 const controller = new FantasyScoreController();

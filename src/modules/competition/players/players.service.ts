@@ -1,6 +1,6 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { PlayersRepository } from "./players.repository";
-import { CreatePlayerDTO, UpdatePlayerDTO } from "./players.dto";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { PlayersRepository } from "./players.repository.js";
+import { CreatePlayerDTO, UpdatePlayerDTO } from "./players.dto.js";
 
 export class PlayersService {
     constructor(

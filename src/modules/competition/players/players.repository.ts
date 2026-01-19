@@ -1,5 +1,5 @@
-import { prisma } from "../../../config/prisma";
-import { CreatePlayerDTO, UpdatePlayerDTO } from "./players.dto";
+import { prisma } from "../../../config/prisma.js";
+import { CreatePlayerDTO, UpdatePlayerDTO } from "./players.dto.js";
 
 export class PlayersRepository {
   create(data: CreatePlayerDTO) {

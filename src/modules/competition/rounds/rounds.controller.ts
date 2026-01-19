@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RoundsService } from "./rounds.service";
+import { RoundsService } from "./rounds.service.js";
 
 const service = new RoundsService();
 

@@ -1,6 +1,6 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { FantasyLineupRepository } from "./fantasyLineup.repository";
-import { CreateFantasyLineupDTO } from "./fantasyLineup.dto";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { FantasyLineupRepository } from "./fantasyLineup.repository.js";
+import { CreateFantasyLineupDTO } from "./fantasyLineup.dto.js";
 
 export class FantasyLineupService {
   private repository = new FantasyLineupRepository();

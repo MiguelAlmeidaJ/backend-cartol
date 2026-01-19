@@ -1,5 +1,5 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { FantasyTeamRepository } from "./fantasyTeam.repository";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { FantasyTeamRepository } from "./fantasyTeam.repository.js";
 
 export class FantasyTeamService {
     constructor(

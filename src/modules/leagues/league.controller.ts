@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { LeagueService } from "./league.service";
+import { LeagueService } from "./league.service.js";
 
 const service = new LeagueService();
 

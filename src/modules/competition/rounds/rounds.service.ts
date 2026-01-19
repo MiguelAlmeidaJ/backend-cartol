@@ -1,6 +1,6 @@
-import { AppError } from "../../../shared/errors/AppError";
-import { RoundsRepository } from "./rounds.repository";
-import { CreateRoundDTO, UpdateRoundDTO } from "./rounds.dto";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { RoundsRepository } from "./rounds.repository.js";
+import { CreateRoundDTO, UpdateRoundDTO } from "./rounds.dto.js";
 
 export class RoundsService {
     constructor(

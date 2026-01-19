@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FantasyTeamService } from "./fantasyTeam.service";
+import { FantasyTeamService } from "./fantasyTeam.service.js";
 
 const service = new FantasyTeamService();
 

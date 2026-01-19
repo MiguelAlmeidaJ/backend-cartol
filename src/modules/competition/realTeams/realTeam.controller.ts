@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RealTeamService } from "./realTeam.service";
+import { RealTeamService } from "./realTeam.service.js";
 
 const service = new RealTeamService();
 

@@ -1,7 +1,7 @@
-import { prisma } from "../../../config/prisma";
-import { AppError } from "../../../shared/errors/AppError";
-import { calculatePoints } from "../../../shared/utils/calculatePoints";
-import { FantasyScoreRepository } from "./fantasyScore.repository";
+import { prisma } from "../../../config/prisma.js";
+import { AppError } from "../../../shared/errors/AppError.js";
+import { calculatePoints } from "../../../shared/utils/calculatePoints.js";
+import { FantasyScoreRepository } from "./fantasyScore.repository.js";
 
 export class FantasyScoreService {
     private repository = new FantasyScoreRepository();
