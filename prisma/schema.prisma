@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  name         String
+  email        String        @unique
+  password     String
+  createdAt    DateTime      @default(now())
+
+  fantasyTeams FantasyTeam[]
+  leagues      LeagueMember[]
+}
+
+model RealTeam {
+  id        String   @id @default(uuid())
+  name      String
+  shortName String
+
+  players   Player[]
+
+  homeMatches Match[] @relation("HomeTeam")
+  awayMatches Match[] @relation("AwayTeam")
+}
+
+model Player {
+  id       String   @id @default(uuid())
+  name     String
+  position Position
+  price    Float
+  active   Boolean  @default(true)
+
+  team     RealTeam @relation(fields: [teamId], references: [id])
+  teamId   String
+
+  stats    PlayerMatchStats[]
+
+  lineupItems FantasyLineupPlayer[]
+  captainId FantasyLineup[] @relation("Captain")
+}
+
+model Round {
+  id        String   @id @default(uuid())
+  number    Int      @unique
+  isOpen    Boolean  @default(true)
+  isProcessed Boolean @default(false)
+
+  startsAt  DateTime
+  endsAt    DateTime
+
+  matches   Match[]
+  lineups   FantasyLineup[]
+  scores    FantasyScore[]
+}
+
+model Match {
+  id         String   @id @default(uuid())
+
+  round      Round    @relation(fields: [roundId], references: [id])
+  roundId    String
+
+  homeTeam   RealTeam @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  homeTeamId String
+
+  awayTeam   RealTeam @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  awayTeamId String
+
+  stats      PlayerMatchStats[]
+}
+
+model PlayerMatchStats {
+  id          String  @id @default(uuid())
+
+  player      Player @relation(fields: [playerId], references: [id])
+  playerId    String
+
+  match       Match  @relation(fields: [matchId], references: [id])
+  matchId     String
+
+  goals       Int    @default(0)
+  assists    Int    @default(0)
+  yellowCard Int    @default(0)
+  redCard    Int    @default(0)
+  minutes    Int    @default(0)
+
+  @@unique([playerId, matchId])
+}
+
+model FantasyTeam {
+  id        String   @id @default(uuid())
+  name      String
+  balance   Float    @default(100)
+
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  lineups   FantasyLineup[]
+  scores    FantasyScore[]
+
+  leagueMembers LeagueMember[]
+}
+
+model FantasyLineup {
+  id             String   @id @default(uuid())
+
+  fantasyTeam    FantasyTeam @relation(fields: [fantasyTeamId], references: [id])
+  fantasyTeamId  String
+
+  round          Round @relation(fields: [roundId], references: [id])
+  roundId        String
+
+  captainId      String
+  captain        Player @relation("Captain", fields: [captainId], references: [id])
+
+  formation      Json
+
+  players        FantasyLineupPlayer[]
+
+  createdAt      DateTime @default(now())
+
+  @@unique([fantasyTeamId, roundId])
+}
+
+model FantasyLineupPlayer {
+  id             String   @id @default(uuid())
+
+  lineup         FantasyLineup @relation(fields: [lineupId], references: [id])
+  lineupId       String
+
+  player         Player @relation(fields: [playerId], references: [id])
+  playerId       String
+
+  @@unique([lineupId, playerId])
+}
+
+
+model FantasyScore {
+  id             String       @id @default(uuid())
+
+  fantasyTeam    FantasyTeam  @relation(fields: [fantasyTeamId], references: [id])
+  fantasyTeamId  String
+
+  round          Round        @relation(fields: [roundId], references: [id])
+  roundId        String
+
+  points         Float
+
+  @@unique([fantasyTeamId, roundId])
+}
+
+model League {
+  id          String         @id @default(uuid())
+  name        String
+  isPrivate   Boolean        @default(false)
+  inviteCode  String?        @unique
+
+  members     LeagueMember[]
+}
+
+model LeagueMember {
+  id            String        @id @default(uuid())
+
+  league        League        @relation(fields: [leagueId], references: [id])
+  leagueId      String
+
+  fantasyTeam   FantasyTeam  @relation(fields: [fantasyTeamId], references: [id])
+  fantasyTeamId String
+
+  @@unique([leagueId, fantasyTeamId])
+  users User[]
+}
+
+enum Position {
+  GOLEIRO
+  ZAGUEIRO
+  LATERAL
+  MEIA
+  ATACANTE
+}

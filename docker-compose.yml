@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cartolajr_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admleague
+      POSTGRES_PASSWORD: league4412teste
+      POSTGRES_DB: dbleaguemg
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: cartolajr_backend
+    ports:
+      - "3333:3333"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    command: sh -c "npx prisma migrate deploy && npm run dev"
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
