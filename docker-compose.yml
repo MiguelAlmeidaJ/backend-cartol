@@ -2,30 +2,67 @@ version: "3.9"
 
 services:
   postgres:
-    image: postgres:16-alpine
-    container_name: cartolajr_postgres
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_USER=admleague
+      - POSTGRES_PASSWORD=league4412
+      - POSTGRES_DB=dbleaguemg
+    container_name: clonteste_postgres
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: admleague
-      POSTGRES_PASSWORD: league4412teste
-      POSTGRES_DB: dbleaguemg
+    networks:
+    - prisma-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prisma -d postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+    command: postgres -c listen_addresses='*'
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+  
   backend:
-    build: .
-    container_name: cartolajr_backend
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3333:3333"
+    stdin_open: true
+    tty: true
+    depends_on:
+      postgres_db:
+        condition: service_healthy
     env_file:
       - .env
-    depends_on:
-      - postgres
-    command: sh -c "npx prisma migrate deploy && npm run dev"
+    networks:
+    - prisma-network
+
+  prisma-studio:
+    image: node:20-alpine
+    working_dir: /usr/src/app
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/usr/src/app
+    command: npx prisma studio --port 5555 --browser none
+    ports:
+      - "5555:5555"
+    env_file:
+      - .env
+    networks:
+      - prisma-network
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+      server:
+        condition: service_started
+
+networks:
+  prisma-network:
+    name: prisma-network
 
 volumes:
   postgres_data:
