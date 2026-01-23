@@ -8,6 +8,7 @@ RUN npm ci
 
 COPY . .
 
+RUN npx run prisma generate
 RUN npm run build
 
 EXPOSE 3333
